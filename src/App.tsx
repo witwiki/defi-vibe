@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ProtocolCardComponent from './components/ProtocolCardComponent/ProtocolCardComponent';
 
 function App() {
   return (
@@ -18,7 +19,10 @@ function App() {
         >
           Learn React
         </a>
+        <br/>
+        <ProtocolCardComponent />
       </header>
+
     </div>
   );
 }

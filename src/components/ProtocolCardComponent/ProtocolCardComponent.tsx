@@ -8,7 +8,8 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 1000,
+    minWidth: 200,
+    minHeight: 200
   },
   bullet: {
     display: 'inline-block',
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard() {
+export default function ProtocolCard() {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -31,23 +32,23 @@ export default function OutlinedCard() {
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
+          Ethereum
         </Typography>
+        <br/>
         <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
+          Compound
         </Typography>
+        <br/>
         <Typography className={classes.pos} color="textSecondary">
-          adjective
+          $655.4M
         </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+        <Typography variant="body1" component="p">
++2.11%
         </Typography>
       </CardContent>
-      <CardActions>
+      {/* <CardActions>
         <Button size="small">Learn More</Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 }

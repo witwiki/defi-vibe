@@ -1,9 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ProtocolCardComponent from './components/ProtocolCardComponent/ProtocolCardComponent';
+import MediaGrid from './components/MediaGridComponent/MediaGrid';
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core';
+
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 700,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+})
 
 function App() {
+
+
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -20,9 +37,12 @@ function App() {
           Learn React
         </a>
         <br/>
-        <ProtocolCardComponent />
-      </header>
 
+
+      </header>
+      <MuiThemeProvider theme={theme}>
+          <MediaGrid />
+      </MuiThemeProvider>
     </div>
   );
 }

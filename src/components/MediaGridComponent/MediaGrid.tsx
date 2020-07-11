@@ -1,43 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import ProtocolCard from '../ProtocolCardComponent/ProtocolCardComponent';
+import ProtocolCard from '../ProtocolCardComponent/ProtocolCard';
 import { Grid } from '@material-ui/core';
 import './MediaGrid.css';
 
 interface IState {
-    links: any[];
     data: any[];
+    // protocols: any[];
+    // assets: any[];
+    // metrics: any[];
+    // roi_values: any[];
+    // delta_24h: any[];
+    // timestamp: any[];
 }
 
 function MediaGrid() {
 
-    const [ItemArray, setItemArray] = useState<IState[]>([{ links: [], data: [] }]);
+    const [ItemArray, setItemArray] = useState<IState[]>(
+        [{ data: [] }]);
 
     useEffect(() => {
-        fetch('https://public.defipulse.com/api/GetProjects?api-key=e698ce2d75c6314de02f217acbe6e95b7963b23d8d809c0dac978b113e31')
+        fetch('https://api.aleth.io/v0/defi/snapshot?metrics=borrow_apr&Authorization="Bearer sk_main_4278990ec37249d2"')
             .then(response => response.json())
             .then(response => {
                 setItemArray(response.collection.items)
             })
             .catch(() => console.log("it didn't work")
             );
+        // fetchData();
+    },[]);
 
-    },);
+    // const fetchData = async () => {
+    //     const response = await fetch('https://api.aleth.io/v0/defi/snapshot?metrics=borrow_apr&Authorization="Bearer sk_main_4278990ec37249d2"');
+    //     const data = await response.json();
+    //     // setItemArray();
+    //     console.log(data);
+        
+    // }
 
     var Cards: JSX.Element[] = [];
     ItemArray.forEach( (el: IState, i: Number ) => {
-        if ( !el || !el.links[0] || !el.data ) {
+        if ( !el || !el.data[0]) {
             return;            
         }
         Cards.push(
             <Grid key={"card_"+i} item sm={6} md={4} lg={3} className="MediaGridCard">
-                <ProtocolCard ImageUrl={el['links'][0]['href']} Description={el["data"][0]['description']} />
+        <ProtocolCard AssetName={el['data'][0]['asset']} RoiValue={el['data'][0]} DailyDelta={el['data'][0]} ImageUrl={"none"} />
             </Grid>)
     })
 
     return (
         <div>
 
-
+<Grid container spacing={3} className="MediaGridContainer">
+                {Cards}
+            </Grid>
 
         </div>
     )

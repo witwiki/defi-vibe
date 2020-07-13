@@ -4,7 +4,9 @@ import { Grid } from '@material-ui/core';
 import './MediaGrid.css';
 
 interface IState {
-    data: any[];
+    // data: any[];
+    // meta: any[];
+    num: any[];
     // protocols: any[];
     // assets: any[];
     // metrics: any[];
@@ -16,13 +18,26 @@ interface IState {
 function MediaGrid() {
 
     const [ItemArray, setItemArray] = useState<IState[]>(
-        [{ data: [] }]);
+        [
+            { 
+                // data: [],
+                // meta: []
+                num: []
+                // protocols: [],
+                // assets: [],
+                // metrics: [],
+                // roi_values: [],
+                // delta_24h: [],
+                // timestamp: []
+            }
+        ]
+    );
 
     useEffect(() => {
         fetch('https://api.aleth.io/v0/defi/snapshot?metrics=borrow_apr&Authorization="Bearer sk_main_4278990ec37249d2"')
             .then(response => response.json())
             .then(response => {
-                setItemArray(response.collection.items)
+                setItemArray(response.data)
             })
             .catch(() => console.log("it didn't work")
             );
@@ -31,20 +46,19 @@ function MediaGrid() {
 
     // const fetchData = async () => {
     //     const response = await fetch('https://api.aleth.io/v0/defi/snapshot?metrics=borrow_apr&Authorization="Bearer sk_main_4278990ec37249d2"');
-    //     const data = await response.json();
-    //     // setItemArray();
-    //     console.log(data);
-        
+    //     const res = await response.json();
+    //     setItemArray(res.data);
+    //     console.log(res.data[0]);
     // }
 
     var Cards: JSX.Element[] = [];
     ItemArray.forEach( (el: IState, i: Number ) => {
-        if ( !el || !el.data[0]) {
+        if ( !el || !el.num ) {
             return;            
         }
         Cards.push(
             <Grid key={"card_"+i} item sm={6} md={4} lg={3} className="MediaGridCard">
-        <ProtocolCard AssetName={el['data'][0]['asset']} RoiValue={el['data'][0]} DailyDelta={el['data'][0]} ImageUrl={"none"} />
+        <ProtocolCard AssetName={el.num[0]} RoiValue={12.4} DailyDelta={2.45} ImageUrl={"none"} />
             </Grid>)
     })
 

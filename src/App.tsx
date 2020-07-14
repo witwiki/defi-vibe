@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import MediaGrid from './components/MediaGridComponent/MediaGrid';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core';
+import BorrowLendTab from './components/BorrowLendTabComponent/BorrowLendTab';
 
 const theme = createMuiTheme({
   breakpoints: {
@@ -40,6 +41,7 @@ function App() {
 
       </header>
       <MuiThemeProvider theme={theme}>
+          <BorrowLendTab />
           <MediaGrid />
       </MuiThemeProvider>
     </div>

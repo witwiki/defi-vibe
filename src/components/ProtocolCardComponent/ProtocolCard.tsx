@@ -9,10 +9,11 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 interface IProtocolCardProps {
-  ImageUrl: string | undefined;   // Asset Logo
-  AssetName: string | undefined;  
-  RoiValue: number | undefined;   //  APR for borrow; APY for lend in percentage
-  DailyDelta: number | undefined; //  Daily Change in percentage
+  ImageUrl: any | undefined;   // Asset Logo
+  AssetName: any | undefined;  
+  ProtocolName: any | undefined;
+  RoiValue: any | undefined;   //  APR for borrow; APY for lend in percentage
+  DailyDelta: any | undefined; //  Daily Change in percentage
 
 }
 
@@ -29,20 +30,26 @@ export default function ProtocolCard(props: IProtocolCardProps) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
+      <br/>
+      <Typography gutterBottom variant="h6" component="h4">
+            {props.ProtocolName}
+          </Typography>
+          <br/>        
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
+          // alt="23" 
           height="140"
           // image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          title={props.AssetName}
         />
         <br/>
         <CardContent>
+
           <Typography gutterBottom variant="h3" component="h2">
             {props.AssetName}
           </Typography>
           <Typography variant="h5" color="textSecondary" component="p">
-            {props.RoiValue} % APR
+            {props.RoiValue}% APR
           </Typography>
           <br/>
           <Typography variant="h5" color="textSecondary" component="p">

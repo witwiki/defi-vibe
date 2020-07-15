@@ -5,6 +5,8 @@ import MediaGrid from './components/BorrowGridComponent/MediaGrid';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core';
 import BorrowLendTab from './components/BorrowLendTabComponent/BorrowLendTab';
 
+require('dotenv').config()
+
 const theme = createMuiTheme({
   breakpoints: {
     values: {

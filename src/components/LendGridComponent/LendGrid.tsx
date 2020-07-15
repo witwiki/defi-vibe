@@ -28,7 +28,7 @@ function LendGrid() {
     );
 
     useEffect(() => {
-        // fetch('https://api.aleth.io/v0/defi/snapshot?metrics=borrow_apr&Authorization="Bearer sk_main_4278990ec37249d2"')
+        // fetch(`https://api.aleth.io/v0/defi/snapshot?metrics=earn_apr&Authorization=${process.env.REACT_APP_API_KEY}`)
         //     .then(response => response.json())
         //     .then(response => {
         //         setItemArray(response.data)
@@ -39,7 +39,7 @@ function LendGrid() {
     },[]);
 
     const fetchData = async () => {
-        const response = await fetch('https://api.aleth.io/v0/defi/snapshot?metrics=earn_apr&Authorization="Bearer sk_main_4278990ec37249d2"');
+        const response = await fetch(`https://api.aleth.io/v0/defi/snapshot?metrics=earn_apr&Authorization=${process.env.REACT_APP_API_KEY}`);
         const res = await response.json();
         setItemArray(res.data);
         // console.log(typeof res.data.asset);

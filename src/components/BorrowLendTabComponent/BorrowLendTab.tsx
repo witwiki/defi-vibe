@@ -5,6 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import MediaGrid from '../BorrowGridComponent/MediaGrid';
+import LendGrid from '../LendGridComponent/LendGrid';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -86,10 +88,10 @@ export default function NavTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Borrow Page
+        <MediaGrid />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Lend Page
+        <LendGrid />
       </TabPanel>
     </div>
   );

@@ -12,7 +12,12 @@ interface IState {
     value: any[];
 }
 
-function MediaGrid() {
+interface IMediaGridProps {
+    BorrowOrLend: (string | null);
+    // SearchProtocol: (string | null);
+}
+
+function MediaGrid(props: IMediaGridProps) {
 
     const [ItemArray, setItemArray] = useState<IState[]>(
         [
@@ -28,7 +33,7 @@ function MediaGrid() {
     );
 
     useEffect(() => {
-        // fetch(`https://api.aleth.io/v0/defi/snapshot?metrics=borrow_apr&Authorization=${process.env.REACT_APP_API_KEY}`)
+        // fetch(`https://api.aleth.io/v0/defi/snapshot?metrics=${props.BorrowOrLend}&Authorization=${process.env.REACT_APP_API_KEY}`)
         //     .then(response => response.json())
         //     .then(response => {
         //         setItemArray(response.data)
@@ -36,13 +41,13 @@ function MediaGrid() {
         //     .catch(() => console.log("it didn't work")
         //     );
         fetchData();
-    },[]);
+    },[props.BorrowOrLend]);
 
     const fetchData = async () => {
         const response = await fetch(`https://api.aleth.io/v0/defi/snapshot?metrics=borrow_apr&Authorization=${process.env.REACT_APP_API_KEY}`);
         const res = await response.json();
         setItemArray(res.data);
-        // console.log(typeof res.data.asset);
+        // console.log(typeof res.data.asset);      ${props.BorrowOrLend}
         // console.log(res.data[0].asset);
     }
 

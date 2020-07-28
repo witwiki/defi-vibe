@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import MediaGrid from '../BorrowGridComponent/MediaGrid';
-import { IUserInput } from '../../common/Interfaces';
-import LendGrid from '../LendGridComponent/LendGrid';
- 
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -34,8 +31,6 @@ function TabPanel(props: TabPanelProps) {
     </div>
   );
 }
-
-
 
 function a11yProps(index: any) {
   return {
@@ -76,15 +71,6 @@ export default function NavTabs() {
     setValue(newValue);
   };
 
-  const [UserInput, setUserInput] = useState<IUserInput>({
-    BorrowOrLend: "Mars"
-  });
-
-  function SetUserInput(a: IUserInput) {
-    setUserInput(a);    
-  }
-
-
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -94,16 +80,19 @@ export default function NavTabs() {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Borrow" href="/drafts" {...a11yProps(0)} />
-          <LinkTab label="Lend" href="/trash" {...a11yProps(1)} />
-
+          <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
+          <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
+          <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <MediaGrid BorrowOrLend={UserInput.BorrowOrLend}/>
+        Page One
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <LendGrid />
+        Page Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Page Three
       </TabPanel>
     </div>
   );
